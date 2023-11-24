@@ -7,7 +7,10 @@ import androidx.lifecycle.ViewModelProvider;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
+
+import com.atenea.practicaviewmodel.Models.Usuario;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -19,20 +22,25 @@ public class MainActivity extends AppCompatActivity {
         MyViewModel myViewModel;
         myViewModel = new ViewModelProvider(this).get(MyViewModel.class);
 
-        TextView ContadortextView = findViewById(R.id.ContadorTextView);
-        Button AgregarButton = findViewById(R.id.AgregarButton);
+        EditText NombreTextView = findViewById(R.id.NombreTextView);
+        EditText EdadTextView = findViewById(R.id.EdadTextView);
+        EditText contrasenaTextView = findViewById(R.id.ContrasenaTextView);
+        Button RegistrarButton = findViewById(R.id.RegistrarButton);
 
-        AgregarButton.setOnClickListener(new View.OnClickListener() {
+        RegistrarButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                myViewModel.agregar(Integer.parseInt(ContadortextView.getText().toString()));
+                Usuario usuario = new Usuario(NombreTextView.getText().toString(),Integer.parseInt(EdadTextView.getText().toString()),contrasenaTextView.getText().toString());
+                myViewModel.registrarV(usuario);
             }
         });
 
-        Observer<Integer> observer = new Observer<Integer>() {
+        Observer<Usuario> observer = new Observer<Usuario>() {
             @Override
-            public void onChanged(Integer integer) {
-                ContadortextView.setText(String.valueOf(integer));
+            public void onChanged(Usuario usuarioObs) {
+                NombreTextView.setText(usuarioObs.getNombre().toString());
+                EdadTextView.setText(String.valueOf(usuarioObs.getEdad()));
+                contrasenaTextView.setText(usuarioObs.getContrasena().toString());
             }
         };
 

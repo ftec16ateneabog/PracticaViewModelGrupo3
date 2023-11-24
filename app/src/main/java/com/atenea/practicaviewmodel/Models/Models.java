@@ -1,9 +1,10 @@
 package com.atenea.practicaviewmodel.Models;
 
 public class Models {
-    public static int agregar(int data)
+    public static Usuario _usuario = new Usuario("usuarioNombre",25,"12345");
+    public static Usuario registrar(Usuario usuario)
     {
-        data++;
-        return data;
+        _usuario = usuario;
+        return _usuario;
     }
 }

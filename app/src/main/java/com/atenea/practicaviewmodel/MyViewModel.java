@@ -5,19 +5,20 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.atenea.practicaviewmodel.Models.Models;
+import com.atenea.practicaviewmodel.Models.Usuario;
 
 public class MyViewModel extends ViewModel {
-    private MutableLiveData<Integer> result;
+    private MutableLiveData<Usuario> result;
     public MyViewModel()
     {
         result = new MutableLiveData<>();
     }
-    public LiveData<Integer> getResult()
+    public LiveData<Usuario> getResult()
     {
         return result;
     }
-    public void agregar(int data)
+    public void registrarV(Usuario usuario)
     {
-         result.setValue(Models.agregar(data));
+         result.setValue(Models.registrar(usuario));
     }
 }
